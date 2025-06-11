@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendamento - Maria & Maria Boutique</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #F5F5DC; /* bege claro */
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #8B0000; /* vermelho quase marrom */
+      font-family: 'Georgia', serif;
+    }
+    label, input, select, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+    input, select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 12px;
+      background-color: #8B0000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #660000;
+    }
+    #mensagem {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Maria & Maria Boutique</h1>
+  <h2 style="text-align: center; font-size: 1.2rem; color:#555;">Agende seu atendimento</h2>
+
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" placeholder="Digite seu nome" required>
+
+  <label for="endereco">Endereço:</label>
+  <input type="text" id="endereco" placeholder="Digite seu endereço" required>
+
+  <label for="horario">Escolha o horário:</label>
+  <select id="horario"></select>
+
+  <button onclick="confirmarAgendamento()">Agendar</button>
+
+  <div id="mensagem"></div>
+
+  <footer>Maria & Maria Boutique © 2025</footer>
+
+  <script>
+    const horarioSelect = document.getElementById('horario');
+    for (let hora = 9; hora <= 22; hora++) {
+      const option = document.createElement('option');
+      option.value = `${hora}:00`;
+      option.text = `${hora}:00 - ${hora + 1}:00`;
+      horarioSelect.add(option);
+    }
+
+    function confirmarAgendamento() {
+      const nome = document.getElementById('nome').value.trim();
+      const endereco = document.getElementById('endereco').value.trim();
+      const horario = document.getElementById('horario').value;
+      const mensagem = document.getElementById('mensagem');
+
+      if (nome && endereco && horario) {
+        mensagem.innerHTML = `✅ <strong>Agendamento confirmado!</strong><br> 
+        Nome: ${nome}<br> 
+        Endereço: ${endereco}<br> 
+        Horário: ${horario} - ${parseInt(horario) + 1}:00`;
+        mensagem.style.color = '#8B0000';
+      } else {
+        mensagem.textContent = '❗ Por favor, preencha todos os campos.';
+        mensagem.style.color = '#8B0000';
+      }
+    }
+  </script>
+
+</body>
+</html>
